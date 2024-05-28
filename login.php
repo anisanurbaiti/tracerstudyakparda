@@ -75,8 +75,7 @@ label{
        <left><a href="lupa_password.php" class="link">Lupa Password ?</a>
       </left>
        <div class="form-group">
-<!--        <div class="g-recaptcha" name="g-recaptcha" id="g-recaptcha" data-sitekey="6LfF4ckpAAAAAM8KW-uwXYUQoXRjghBEV717gNUx"></div> -->
-       <div class="g-recaptcha" name="g-recaptcha" id="g-recaptcha" data-sitekey="6LcH3MEUAAAAAMIoCmcCr71XY_uEEsXqMcMISYTQ"></div>
+       <div class="g-recaptcha" name="g-recaptcha" id="g-recaptcha" data-sitekey="6LeGaeopAAAAAI-UouDzu_vjC3nzlP-cLnzqVg2G"></div>
      </div>
        <center> 
        <br>      
