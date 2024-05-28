@@ -36,13 +36,13 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
-<?php 
+<?php
 session_start();
 include '../db/koneksi.php';
-if(!isset($_SESSION['id_alumni'])){
+if (!isset($_SESSION['id_alumni'])) {
   header('location:../login.php');
 }
-$VarEmail      =$_SESSION["id_alumni"];
+$VarEmail      = $_SESSION["id_alumni"];
 // $VarNim        =$_SESSION["nomor_nim"];
 // $VarUsername  =$_SESSION["nama"];
 // $Tempatlahir  =$_SESSION["tempat_lahir"];
@@ -61,17 +61,18 @@ $VarEmail      =$_SESSION["id_alumni"];
 // $Ipk          =$_SESSION["ipk"];
 
 //menampilkan data user yang sedang login
-$user=$_SESSION["id_alumni"];
-$sql2=mysqli_query($con, "SELECT * FROM tb_alumni where email='$_SESSION[id_alumni]'");
-$rows=mysqli_fetch_array($sql2);
+$user = $_SESSION["id_alumni"];
+$sql2 = mysqli_query($con, "SELECT * FROM tb_alumni where email='$_SESSION[id_alumni]'");
+$rows = mysqli_fetch_array($sql2);
 ?>
+
 <body>
- <!-- ======= Header ======= -->
+  <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
-         <h1 class="logo me-auto"><img src="../images/iconlog.png" alt="" class="img-fluid" width="250px;" height="80px;"></h1>
+        <h1 class="logo me-auto"><img src="../images/iconlog.png" alt="" class="img-fluid" width="250px;" height="80px;"></h1>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -100,8 +101,8 @@ $rows=mysqli_fetch_array($sql2);
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6><?php echo $rows['nama_lengkap'];?></h6>
-              <span><?php echo $rows['nim'];?></span>
+              <h6><?php echo $rows['nama_lengkap']; ?></h6>
+              <span><?php echo $rows['nim']; ?></span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -113,50 +114,44 @@ $rows=mysqli_fetch_array($sql2);
                 <span>My Profile</span>
               </a>
             </li>
-             <!--  <li>
-              <a class="dropdown-item d-flex align-items-center" href="cek_data_kuesioner.php?nim=<?php// echo$rows['nim']; ?>">
-                <i class="bi bi-person"></i>
-                <span>Cek Data Kuesioner</span>
-              </a>
-            </li> -->
-               <li>
-              <a class="dropdown-item d-flex align-items-center" href="ubah_password.php?nim=<?php echo$rows['nim']; ?>">
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="ubah_password.php?nim=<?php echo $rows['nim']; ?>">
                 <i class="bi bi-person"></i>
                 <span>Ganti Password</span>
               </a>
             </li>
-              <hr class="dropdown-divider">
-            </li>
-            <li>
-              <?php 
-          if(isset($_SESSION['id_alumni'])){
-          $kode_cs = $_SESSION['id_alumni'];
-          $cek = mysqli_query($con, "SELECT email from tb_alumni where email= '$kode_cs' ");
-          $value = mysqli_num_rows($cek);
-            ?>
-            <?php 
-          }else{
+            <hr class="dropdown-divider">
+        </li>
+        <li>
+          <?php
+          if (isset($_SESSION['id_alumni'])) {
+            $kode_cs = $_SESSION['id_alumni'];
+            $cek = mysqli_query($con, "SELECT email from tb_alumni where email= '$kode_cs' ");
+            $value = mysqli_num_rows($cek);
+          ?>
+          <?php
+          } else {
             echo "
             ";
           }
-          if(!isset($_SESSION['id_alumni'])){
-            ?>
-             <?php 
-          }else{
-            ?>
-               
-              <a class="dropdown-item d-flex align-items-center" href="keluar.php" onclick="return confirm('Yakin ingin Logout ?')">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
-              </a>
-            </li>
-
-          </ul><!-- End Profile Dropdown Items -->
-        </li><!-- End Profile Nav -->
-           <?php 
-          }
+          if (!isset($_SESSION['id_alumni'])) {
           ?>
-      </ul>
+          <?php
+          } else {
+          ?>
+
+            <a class="dropdown-item d-flex align-items-center" href="keluar.php" onclick="return confirm('Yakin ingin Logout ?')">
+              <i class="bi bi-box-arrow-right"></i>
+              <span>Sign Out</span>
+            </a>
+        </li>
+
+      </ul><!-- End Profile Dropdown Items -->
+      </li><!-- End Profile Nav -->
+    <?php
+          }
+    ?>
+    </ul>
     </nav><!-- End Icons Navigation -->
 
   </header><!-- End Header -->
@@ -172,8 +167,8 @@ $rows=mysqli_fetch_array($sql2);
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
-        <li class="nav-heading">Master Data</li>
-       <li class="nav-item">
+      <li class="nav-heading">Master Data</li>
+      <li class="nav-item">
         <a class="nav-link collapsed" href="profil_alumni.php">
           <i class="bi bi-person"></i>
           <span>Profil Alumni</span>
@@ -185,20 +180,20 @@ $rows=mysqli_fetch_array($sql2);
           <span>Info Lowongan Kerja</span>
         </a>
       </li><!-- End Blank Page Nav -->
-       <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link collapsed" href="form_kuesioner.php">
           <i class="bi bi-journal-text"></i>
           <span>Formulir Kuesioner</span>
         </a>
       </li><!-- End Blank Page Nav -->
-        <li class="nav-heading">Lamaran Pekerjaan</li>
+      <li class="nav-heading">Lamaran Pekerjaan</li>
       <li class="nav-item">
         <a class="nav-link collapsed" href="riwayat_lamaran.php">
           <i class="bi bi-journal-text"></i>
           <span>Riwayat Berkas Lamaran</span>
         </a>
       </li><!-- End Blank Page Nav -->
-        <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link collapsed" href="pengumuman.php">
           <i class="bi bi-journal-text"></i>
           <span>Pengumuman</span>
@@ -218,7 +213,7 @@ $rows=mysqli_fetch_array($sql2);
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
-  
+
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
