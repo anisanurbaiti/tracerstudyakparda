@@ -1,0 +1,39 @@
+name: Deploy to Development Server
+
+on:
+  push:
+    branches:
+      - develop
+
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest]
+        php-versions: ['8.2']
+        dependency-stability: [prefer-stable]
+
+    name: PHP${{ matrix.php-versions }} - ${{ matrix.dependency-stability }} - ${{ matrix.operating-system}}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.INSTANCE_PUBLIC_IP }} >> ~/.ssh/known_hosts
+
+      - name: Deploy to VPS
+        run: |
+          ssh -i ~/.ssh/id_rsa akpardatracer@${{ secrets.INSTANCE_PUBLIC_IP }} 'cd /home/akpardatracer/htdocs/akpardatracer.com && git pull origin develop'
+
+      - name: Clear SSH key
+        run: rm ~/.ssh/id_rsa

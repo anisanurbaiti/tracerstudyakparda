@@ -58,7 +58,7 @@ header('location:index.php');
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
-         <h1 class="logo me-auto"><img src="../images/iconlog.png" alt="" class="img-fluid" width="250px;" height="80px;"></h1>
+         <h1 class="logo me-auto"><img src="../images/iconlog.png" alt="" class="img-fluid" height="80px;"></h1>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
